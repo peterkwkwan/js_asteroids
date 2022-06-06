@@ -22,6 +22,20 @@ function SetupCanvas() {
     Render()
 }
 
+class Ship {
+    constructor() {
+        this.visible = true
+        this.x = canvasWidth / 2;
+        this.y = canvasHeight / 2;
+        this.movingForward = false
+        this.speed = 0.1
+        this.velX = 0
+        this.velY = 0
+    }
+}
+
+let ship = new Ship()
+
 function Render() {
 
 }
