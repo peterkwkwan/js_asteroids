@@ -37,6 +37,9 @@ class Ship {
         this.strokeColor = 'white';
     }
 
+    Rotate() {
+        this.angle += this.rotateSpeed * dir
+    }
 
     Update() {
         let radians = this.angle / Math.PI * 180
@@ -62,6 +65,18 @@ class Ship {
         this.x -= this.velX
         this.y -= this.velY
 
+    }
+    Draw(){
+        ctx.strokeStyle = this.strokeColor
+        ctx.beginPath()
+        let vertAngle = ((Math.PI * 2) / 3)
+        var radians = this.angle / Math.PI * 180
+        for(let i = 0; i < 3; i ++){
+            ctx.lineTo(this.x - this.radius * Math.cos(vertAngle * i + radians), 
+            this.y - this.radius * Math.sin(vertAngle * i + radians))
+        }
+        ctx.closePath()
+        ctx.stroke()
     }
 }
 
