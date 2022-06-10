@@ -190,7 +190,7 @@ function CircleCollision (p1x, p1y, r1, p2x, p2y, r2){
     radiusSum = r1 + r2
     xDiff = p1x - p2x
     yDiff = p1y - p2y
-    if(radiusSum > Math.sqrt((xDiff * yDiff) + (yDiff * yDiff))){
+    if(radiusSum > Math.sqrt((xDiff * xDiff) + (yDiff * yDiff))){
         return true
     } else {
         return false
@@ -227,7 +227,7 @@ function Render() {
     
     ctx.fillStyle = 'white'
     ctx.font = '21px Arial'
-    ctx.fillText(`SCORE: ${score.toString(), 20, 35}`)
+    ctx.fillText(`SCORE: ${score.toString()}`, 20, 35)
 
     if(lives <= 0){
         ship.visible = false
@@ -254,7 +254,7 @@ function Render() {
         loop1: 
         for (let i = 0; i < asteroids.length; i++) {
             for (let j = 0; j < bullets.length; j++) {
-                if(CircleCollision(bullets[j].x, bullets[j].y, 3, asteroids[i].x, asteroids[i].y, asteroids[j].collisonRadius)){
+                if(CircleCollision(bullets[j].x, bullets[j].y, 3, asteroids[i].x, asteroids[i].y, asteroids[i].collisonRadius)){
                     if(asteroids[i].level === 1){
                         asteroids.push(
                             new Asteroid(
@@ -287,8 +287,10 @@ function Render() {
         }
     }
     
-    ship.Update()
-    ship.Draw()
+    if(ship.visible){
+        ship.Update()
+        ship.Draw()
+    }
 
     if(bullets.length > 0 ){
         for(let i = 0; i < bullets.length; i++){
