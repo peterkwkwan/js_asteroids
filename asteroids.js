@@ -9,7 +9,6 @@ let asteroids = []
 let score = 0
 let lives = 3
 
-
 document.addEventListener('DOMContentLoaded', SetupCanvas);
 
 function SetupCanvas() {
