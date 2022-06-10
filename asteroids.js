@@ -31,6 +31,37 @@ class Ship {
         this.speed = 0.1
         this.velX = 0
         this.velY = 0
+        this.rotateSpeed = 0.001
+        this.radius = 15
+        this.angle = 0
+        this.strokeColor = 'white';
+    }
+
+
+    Update() {
+        let radians = this.angle / Math.PI * 180
+        if(this.movingForward){
+            this.velX += Math.cos(radians) * this.speed
+            this.velY += Math.sin(radians) * this.speed
+        }
+        if(this.x < this.radius){
+            this.x = canvas.width
+        }
+        if(this.x > canvas.width){
+            this.x = this.radius
+        }
+        if(this.y < this.radius){
+            this.y = canvas.height
+        }
+        if(this.y > this.radius){
+            this.y = this.radius
+        }
+        this.velX *= 0.99
+        this.velY *= 0.99
+
+        this.x -= this.velX
+        this.y -= this.velY
+
     }
 }
 
